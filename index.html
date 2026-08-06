@@ -101,7 +101,7 @@
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </div>
-            <span class="font-mono text-sm tracking-wider text-gray-300">SYSTEM.STATUS: <span class="text-emerald-400 font-semibold">TRAINING_MODEL</span></span>
+            <span class="font-mono text-sm tracking-wider text-gray-300">SYSTEM.STATUS: <span class="text-emerald-400 font-semibold">INITIALIZING_LAUNCH</span></span>
         </div>
         <div class="flex items-center gap-4">
             <a href="https://github.com/Ruthwick15" target="_blank" class="text-gray-400 hover:text-white transition-colors">
@@ -119,16 +119,21 @@
         <!-- Status Badge -->
         <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-xs font-mono text-purple-300 mb-8 border border-purple-500/20 shadow-lg shadow-purple-500/10">
             <i data-lucide="sparkles" class="w-4 h-4 text-purple-400"></i>
-            <span>NEXT-GEN AI ARCHITECTURE IN PROGRESS</span>
+            <span>PORTFOLIO & PROJECT HUB GOING LIVE SOON</span>
         </div>
 
         <!-- Main Headline -->
         <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6">
-            Architecting the <span class="glow-text">Future of AI Systems</span>
+            Hi, I'm <span class="glow-text">Ruthwick</span>.
         </h1>
 
+        <!-- Subheading Introduction -->
+        <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mb-8 font-medium leading-relaxed">
+            Thanks for stopping by! I'm an <span class="text-purple-400 font-semibold">AI Development & Software Engineer</span> crafting high-performance intelligence systems.
+        </p>
+
         <!-- Terminal Typing Output -->
-        <div class="w-full max-w-2xl bg-gray-950/80 rounded-xl border border-gray-800 p-4 font-mono text-left text-sm text-gray-300 shadow-2xl mb-10">
+        <div class="w-full max-w-2xl bg-gray-950/80 rounded-xl border border-gray-800 p-4 font-mono text-left text-sm text-gray-300 shadow-2xl mb-8">
             <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-800/60 text-xs text-gray-500">
                 <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
                 <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
@@ -140,9 +145,9 @@
             </div>
         </div>
 
-        <!-- Subheading -->
-        <p class="text-base sm:text-lg text-gray-400 max-w-2xl mb-10 leading-relaxed">
-            Engineered at the intersection of Deep Learning, Cloud Infrastructure, and Scalable Software Systems. Deploying soon.
+        <!-- Launch Note -->
+        <p class="text-sm sm:text-base text-gray-400 max-w-xl mb-10 leading-relaxed">
+            I am currently compiling full-stack AI case studies, open-source repositories, and interactive demos. Everything will be active and live here shortly!
         </p>
 
         <!-- Tech Stack Badges -->
@@ -163,7 +168,7 @@
                     type="email" 
                     id="email-input"
                     required 
-                    placeholder="Enter email for early access..." 
+                    placeholder="Drop your email for early access..." 
                     class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-white placeholder-gray-500 rounded-lg focus:outline-none"
                 />
             </div>
@@ -176,7 +181,7 @@
         </form>
 
         <p id="form-feedback" class="text-xs font-mono text-emerald-400 hidden mb-8">
-            ✓ Access request received. You'll be notified upon initial deployment.
+            ✓ Access request received. You'll be notified when the full site goes live!
         </p>
 
         <!-- Dynamic Stat Counters -->
@@ -217,13 +222,14 @@
         // 1. Initialize Lucide Icons
         lucide.createIcons();
 
-        // 2. Terminal Auto-Typing Effect
+        // 2. Terminal Auto-Typing Effect (Personalized Intro & Launch Messages)
         const typingSentences = [
-            "Initializing neural network weights...",
-            "Connecting vector database clusters...",
-            "Optimizing LLM inference pipelines...",
-            "Deploying scalable cloud microservices...",
-            "System ready. Welcome to ruthwickk.dev."
+            "Hi there! Welcome to ruthwickk.dev...",
+            "I'm Ruthwick, an AI & Software Engineer.",
+            "Thanks for checking out my space!",
+            "I will be active here very soon...",
+            "Preparing AI project demos & deep-dives.",
+            "Stay tuned — full platform launching soon!"
         ];
         
         let sentenceIndex = 0;
@@ -245,7 +251,7 @@
             let typeSpeed = isDeleting ? 30 : 60;
 
             if (!isDeleting && charIndex === currentSentence.length) {
-                typeSpeed = 2000; // Pause at full sentence
+                typeSpeed = 2000;
                 isDeleting = true;
             } else if (isDeleting && charIndex === 0) {
                 isDeleting = false;
