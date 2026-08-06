@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>System Status: Deploying Portfolio...</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @keyframes pulse-fast {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .animate-blink {
+      animation: pulse-fast 1s infinite;
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-mono min-h-screen flex flex-col justify-between p-6 sm:p-12 selection:bg-emerald-500 selection:text-slate-950">
+
+  <!-- Header / Status Bar -->
+  <header class="flex justify-between items-center max-w-4xl mx-auto w-full text-xs sm:text-sm text-slate-400">
+    <div class="flex items-center gap-2">
+      <span class="h-2.5 w-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+      <span>STATUS: 202 ACCEPTED (Building...)</span>
+    </div>
+    <div class="text-slate-500 hidden sm:block">
+      env: production
+    </div>
+  </header>
+
+  <!-- Main Hero Content -->
+  <main class="max-w-3xl mx-auto w-full my-auto py-12">
+    
+    <!-- Code Window Container -->
+    <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-2xl shadow-emerald-950/20">
+      
+      <!-- Window Controls Header -->
+      <div class="bg-slate-900/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-3 h-3 rounded-full bg-rose-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+          <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+        </div>
+        <div class="text-xs text-slate-500 font-sans">portfolio.deploy.ts</div>
+        <div class="w-12"></div> <!-- Spacer for visual alignment -->
+      </div>
+
+      <!-- Code Content -->
+      <div class="p-6 sm:p-8 space-y-4 text-sm sm:text-base leading-relaxed overflow-x-auto">
+        <p class="text-slate-500">// TODO: Refactor CSS, fix edge-case bugs, drink more coffee.</p>
+
+        <div>
+          <span class="text-purple-400">const</span> 
+          <span class="text-blue-400"> developer</span> = {<br/>
+          &nbsp;&nbsp;<span class="text-emerald-400">name</span>: <span class="text-amber-300">'[Your Name]'</span>,<br/>
+          &nbsp;&nbsp;<span class="text-emerald-400">role</span>: <span class="text-amber-300">'Software Engineer'</span>,<br/>
+          &nbsp;&nbsp;<span class="text-emerald-400">status</span>: <span class="text-amber-300">'Squashing final bugs'</span>,<br/>
+          &nbsp;&nbsp;<span class="text-emerald-400">progress</span>: <span class="text-cyan-400">92</span>%<br/>
+          };
+        </div>
+
+        <div>
+          <span class="text-purple-400">async function</span> 
+          <span class="text-blue-400">launchPortfolio</span>() {<br/>
+          &nbsp;&nbsp;<span class="text-purple-400">await</span> 
+          <span class="text-blue-400">compileProjects</span>();<br/>
+          &nbsp;&nbsp;<span class="text-purple-400">await</span> 
+          <span class="text-blue-400">polishUI</span>();<br/>
+          &nbsp;&nbsp;<span class="text-purple-400">return</span> 
+          <span class="text-amber-300">'Coming Soon 🚀'</span>;<br/>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Copy & Subtitle -->
+    <div class="mt-10 text-center sm:text-left space-y-3">
+      <h1 class="text-2xl sm:text-4xl font-bold tracking-tight text-white">
+        Almost ready to push to prod <span class="animate-blink text-emerald-400">_</span>
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base max-w-xl font-sans">
+        I’m currently fine-tuning my portfolio to showcase recent projects, architecture breakdowns, and tech stacks. No 404s guaranteed on launch.
+      </p>
+    </div>
+
+    <!-- Email Notification / Action -->
+    <div class="mt-8">
+      <form class="flex flex-col sm:flex-row gap-3 max-w-md" onsubmit="event.preventDefault(); alert('Subscribed! Notification sent on launch.');">
+        <input 
+          type="email" 
+          required 
+          placeholder="git_notify@yourdomain.com" 
+          class="bg-slate-900 border border-slate-800 rounded-lg px-4 py-3 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 flex-1 transition-all"
+        />
+        <button 
+          type="submit" 
+          class="bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold px-6 py-3 rounded-lg text-sm transition-colors flex items-center justify-center gap-2"
+        >
+          <span>Ping Me on Launch</span>
+        </button>
+      </form>
+    </div>
+
+  </main>
+
+  <!-- Footer Links -->
+  <footer class="max-w-4xl mx-auto w-full flex flex-col sm:flex-row justify-between items-center gap-4 border-t border-slate-800/60 pt-6 text-xs text-slate-500">
+    <div>
+      &copy; <span id="year"></span> [Your Name]. Built with zero external JS frameworks.
+    </div>
+    
+    <div class="flex items-center gap-6">
+      <a href="https://github.com" target="_blank" rel="noreferrer" class="hover:text-emerald-400 transition-colors">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="hover:text-emerald-400 transition-colors">LinkedIn</a>
+      <a href="mailto:you@example.com" class="hover:text-emerald-400 transition-colors">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
