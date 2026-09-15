@@ -3,354 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruthwick Masidkar | AI & Software Engineering</title>
-    <!-- Tailwind CSS CDN -->
+    <title>Ruthwick Masidkar — AI &amp; Software Engineer</title>
+    <meta name="description" content="Ruthwick Masidkar is an AI &amp; Software Engineer building intelligent, high-performance systems. Full portfolio launching soon — reach out in the meantime.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;600;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --color-background: #0F0F23;
+            --color-foreground: #F8FAFC;
+            --color-card: #1B1B30;
+            --color-muted-foreground: #94A3B8;
+            --color-border: rgba(248, 250, 252, 0.09);
+            --color-accent: #CA8A04;
+            --color-accent-foreground: #0F172A;
+            --color-destructive: #F87171;
+        }
+
+        * { -webkit-tap-highlight-color: transparent; }
+
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #030712;
-            color: #f3f4f6;
-            overflow-x: hidden;
+            background-color: var(--color-background);
+            color: var(--color-foreground);
         }
 
-        .font-mono {
-            font-family: 'Fira Code', monospace;
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
         }
 
-        /* Glassmorphism Styles */
-        .glass-card {
-            background: rgba(17, 24, 39, 0.7);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        /* Static, subtle depth — no animated canvas */
+        .field-glow {
+            background-color: var(--color-background);
+            background-image:
+                radial-gradient(60rem 30rem at 15% -10%, rgba(67, 56, 202, 0.16), transparent 60%),
+                radial-gradient(50rem 25rem at 110% 10%, rgba(202, 138, 4, 0.08), transparent 60%);
         }
 
-        .glass-pill {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .name-accent {
+            text-shadow: 0 0 22px rgba(202, 138, 4, 0.25);
         }
 
-        /* Glowing Gradients */
-        .glow-text {
-            background: linear-gradient(135deg, #60a5fa 0%, #a855f7 50%, #ec4899 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .card {
+            background: var(--color-card);
+            border: 1px solid var(--color-border);
         }
 
-        .glow-border {
-            position: relative;
+        .btn-primary {
+            background: var(--color-accent);
+            color: var(--color-accent-foreground);
         }
-        .glow-border::after {
-            content: '';
-            position: absolute;
-            inset: -1px;
-            background: linear-gradient(90deg, #3b82f6, #a855f7, #ec4899);
-            border-radius: inherit;
-            z-index: -1;
-            opacity: 0.3;
-            transition: opacity 0.3s ease;
+        .btn-primary:hover { background: #B07A03; }
+        .btn-primary:disabled { opacity: 0.55; cursor: not-allowed; }
+
+        .btn-secondary {
+            border: 1px solid var(--color-border);
+            color: var(--color-foreground);
         }
-        .glow-border:hover::after {
-            opacity: 0.8;
+        .btn-secondary:hover { border-color: rgba(248, 250, 252, 0.25); background: rgba(248, 250, 252, 0.03); }
+
+        a, button { transition: color 180ms ease, background-color 180ms ease, border-color 180ms ease, opacity 180ms ease; }
+
+        input, textarea {
+            background: rgba(248, 250, 252, 0.03);
+            border: 1px solid var(--color-border);
+            color: var(--color-foreground);
+        }
+        input::placeholder, textarea::placeholder { color: rgba(148, 163, 184, 0.55); }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(202, 138, 4, 0.25);
+        }
+        input[aria-invalid="true"], textarea[aria-invalid="true"] {
+            border-color: var(--color-destructive);
+        }
+        input[aria-invalid="true"]:focus, textarea[aria-invalid="true"]:focus {
+            border-color: var(--color-destructive);
+            box-shadow: 0 0 0 3px rgba(248, 113, 113, 0.25);
         }
 
-        /* Terminal Cursor Animation */
-        .cursor {
-            display: inline-block;
-            width: 8px;
-            height: 18px;
-            background-color: #3b82f6;
-            animation: blink 1s infinite;
-            vertical-align: middle;
-            margin-left: 2px;
+        a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+            outline: 2px solid var(--color-accent);
+            outline-offset: 2px;
         }
 
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+        .spinner {
+            width: 16px; height: 16px;
+            border: 2px solid rgba(15, 23, 42, 0.35);
+            border-top-color: var(--color-accent-foreground);
+            border-radius: 50%;
+            animation: spin 700ms linear infinite;
         }
-
-        /* Canvas Overlay */
-        #neural-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            pointer-events: none;
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="relative min-h-screen flex flex-col justify-between items-center px-4 py-8 antialiased selection:bg-purple-500 selection:text-white">
+<body class="antialiased field-glow selection:bg-amber-500/30 selection:text-white">
 
-    <!-- Interactive Canvas Background -->
-    <canvas id="neural-canvas"></canvas>
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:rounded-md focus:bg-amber-600 focus:text-slate-950 focus:font-medium">
+        Skip to content
+    </a>
 
-    <!-- Top Navigation Header -->
-    <header class="relative z-10 w-full max-w-6xl flex justify-between items-center py-4 px-6 rounded-2xl glass-card">
-        <div class="flex items-center gap-3">
-            <div class="relative flex h-3 w-3">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-            </div>
-            <span class="font-mono text-sm tracking-wider text-gray-300">SYSTEM.STATUS: <span class="text-emerald-400 font-semibold">INITIALIZING_LAUNCH</span></span>
-        </div>
-        <div class="flex items-center gap-4">
-            <a href="https://github.com/Ruthwick15" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                <i data-lucide="github" class="w-5 h-5"></i>
+    <!-- Header -->
+    <header class="sticky top-0 z-40 border-b" style="border-color: var(--color-border); background: rgba(15, 15, 35, 0.85); backdrop-filter: blur(6px);">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6 h-16 flex items-center justify-between">
+            <a href="#main" class="font-semibold tracking-tight text-[15px] text-slate-100">
+                Ruthwick<span style="color: var(--color-accent);">.</span>dev
             </a>
-            <a href="https://linkedin.com/in/ruthwick-masidkar" target="_blank" class="text-gray-400 hover:text-white transition-colors">
-                <i data-lucide="linkedin" class="w-5 h-5"></i>
-            </a>
+            <nav class="flex items-center gap-5">
+                <a href="#contact" class="hidden sm:inline text-sm font-medium text-slate-300 hover:text-white">Reach Out</a>
+                <a href="https://github.com/Ruthwick15" target="_blank" rel="noopener" class="text-slate-400 hover:text-white" aria-label="GitHub profile">
+                    <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/ruthwick-masidkar" target="_blank" rel="noopener" class="text-slate-400 hover:text-white" aria-label="LinkedIn profile">
+                    <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+            </nav>
         </div>
     </header>
 
-    <!-- Main Content Container -->
-    <main class="relative z-10 w-full max-w-4xl my-auto py-12 flex flex-col items-center text-center">
-        
-        <!-- Status Badge -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-pill text-xs font-mono text-purple-300 mb-8 border border-purple-500/20 shadow-lg shadow-purple-500/10">
-            <i data-lucide="sparkles" class="w-4 h-4 text-purple-400"></i>
-            <span>PORTFOLIO & PROJECT HUB GOING LIVE SOON</span>
-        </div>
+    <main id="main">
+        <!-- Hero -->
+        <section class="max-w-5xl mx-auto px-5 sm:px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
+            <p class="text-xs font-semibold tracking-[0.18em] uppercase text-amber-500/90 mb-5">
+                AI &amp; Software Engineer
+            </p>
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.08] max-w-3xl name-accent">
+                Ruthwick Masidkar
+            </h1>
+            <p class="mt-6 text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed">
+                I design and build AI-driven systems — from LLM applications and retrieval pipelines to the full-stack infrastructure that runs them in production.
+            </p>
+            <p class="mt-4 text-sm sm:text-base max-w-2xl leading-relaxed" style="color: var(--color-muted-foreground);">
+                This site is being rebuilt from the ground up. Project write-ups and case studies are on the way — in the meantime, feel free to reach out below.
+            </p>
 
-        <!-- Main Headline -->
-        <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-6">
-            Hi, I'm <span class="glow-text">Ruthwick</span>.
-        </h1>
-
-        <!-- Subheading Introduction -->
-        <p class="text-lg sm:text-xl text-gray-300 max-w-2xl mb-8 font-medium leading-relaxed">
-            Thanks for stopping by! I'm an <span class="text-purple-400 font-semibold">AI Development & Software Engineer</span> crafting high-performance intelligence systems.
-        </p>
-
-        <!-- Terminal Typing Output -->
-        <div class="w-full max-w-2xl bg-gray-950/80 rounded-xl border border-gray-800 p-4 font-mono text-left text-sm text-gray-300 shadow-2xl mb-8">
-            <div class="flex items-center gap-2 mb-3 pb-2 border-b border-gray-800/60 text-xs text-gray-500">
-                <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
-                <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-                <span class="ml-2">ruthwick@ai-core:~</span>
+            <div class="mt-9 flex flex-wrap items-center gap-3">
+                <a href="#contact" class="btn-primary inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-semibold">
+                    Reach Out
+                    <i data-lucide="arrow-right" class="w-4 h-4" aria-hidden="true"></i>
+                </a>
+                <a href="https://github.com/Ruthwick15" target="_blank" rel="noopener" class="btn-secondary inline-flex items-center gap-2 px-5 py-3 rounded-lg text-sm font-medium">
+                    <svg viewBox="0 0 24 24" class="w-4 h-4" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                    View GitHub
+                </a>
             </div>
-            <div>
-                <span class="text-purple-400">root@ruthwick.dev:~$</span> <span id="typed-text"></span><span class="cursor"></span>
-            </div>
-        </div>
+        </section>
 
-        <!-- Launch Note -->
-        <p class="text-sm sm:text-base text-gray-400 max-w-xl mb-10 leading-relaxed">
-            I am currently compiling full-stack AI case studies, open-source repositories, and interactive demos. Everything will be active and live here shortly!
-        </p>
-
-        <!-- Tech Stack Badges -->
-        <div class="flex flex-wrap justify-center gap-2 max-w-xl mb-12">
-            <span class="px-3 py-1 rounded-md glass-pill text-xs font-mono text-blue-300 border border-blue-500/20">PyTorch</span>
-            <span class="px-3 py-1 rounded-md glass-pill text-xs font-mono text-emerald-300 border border-emerald-500/20">LLM Fine-Tuning</span>
-            <span class="px-3 py-1 rounded-md glass-pill text-xs font-mono text-purple-300 border border-purple-500/20">LangChain & RAG</span>
-            <span class="px-3 py-1 rounded-md glass-pill text-xs font-mono text-cyan-300 border border-cyan-500/20">Distributed Systems</span>
-            <span class="px-3 py-1 rounded-md glass-pill text-xs font-mono text-orange-300 border border-orange-500/20">AWS & Cloud Infra</span>
-            <span class="px-3 py-1 rounded-md glass-pill text-xs font-mono text-pink-300 border border-pink-500/20">Full-Stack AI</span>
-        </div>
-
-        <!-- Email Waitlist Form -->
-        <form id="subscribe-form" class="w-full max-w-md flex flex-col sm:flex-row gap-3 mb-12 glow-border rounded-xl p-1 bg-gray-900/60">
-            <div class="relative flex-1">
-                <i data-lucide="mail" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500"></i>
-                <input 
-                    type="email" 
-                    id="email-input"
-                    required 
-                    placeholder="Drop your email for early access..." 
-                    class="w-full pl-11 pr-4 py-3 bg-transparent text-sm text-white placeholder-gray-500 rounded-lg focus:outline-none"
-                />
+        <!-- What's in progress -->
+        <section aria-labelledby="progress-heading" class="max-w-5xl mx-auto px-5 sm:px-6 pb-20 sm:pb-24">
+            <h2 id="progress-heading" class="text-sm font-semibold tracking-[0.14em] uppercase mb-6" style="color: var(--color-muted-foreground);">
+                Currently in progress
+            </h2>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <div class="card rounded-xl p-5">
+                    <i data-lucide="layout-template" class="w-5 h-5 text-amber-500 mb-3" aria-hidden="true"></i>
+                    <h3 class="text-sm font-semibold text-slate-100 mb-1.5">Case studies</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--color-muted-foreground);">
+                        Deep dives into AI systems and full-stack projects I've shipped.
+                    </p>
+                </div>
+                <div class="card rounded-xl p-5">
+                    <i data-lucide="folder-git-2" class="w-5 h-5 text-amber-500 mb-3" aria-hidden="true"></i>
+                    <h3 class="text-sm font-semibold text-slate-100 mb-1.5">Open-source work</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--color-muted-foreground);">
+                        Repositories and tools I maintain, with usage notes and demos.
+                    </p>
+                </div>
+                <div class="card rounded-xl p-5">
+                    <i data-lucide="pen-line" class="w-5 h-5 text-amber-500 mb-3" aria-hidden="true"></i>
+                    <h3 class="text-sm font-semibold text-slate-100 mb-1.5">Notes &amp; writing</h3>
+                    <p class="text-sm leading-relaxed" style="color: var(--color-muted-foreground);">
+                        Short technical write-ups on LLM engineering and distributed systems.
+                    </p>
+                </div>
             </div>
-            <button 
-                type="submit" 
-                class="px-6 py-3 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 text-white font-medium text-sm rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2 shadow-lg shadow-purple-500/25">
-                <span>Notify Me</span>
-                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-        </form>
+        </section>
 
-        <p id="form-feedback" class="text-xs font-mono text-emerald-400 hidden mb-8">
-            ✓ Access request received. You'll be notified when the full site goes live!
-        </p>
+        <!-- Reach Out -->
+        <section id="contact" aria-labelledby="contact-heading" class="max-w-5xl mx-auto px-5 sm:px-6 pb-24 sm:pb-32">
+            <div class="card rounded-2xl p-6 sm:p-10">
+                <div class="max-w-xl">
+                    <h2 id="contact-heading" class="text-2xl sm:text-3xl font-bold tracking-tight text-slate-100">
+                        Reach out
+                    </h2>
+                    <p class="mt-3 text-sm sm:text-base leading-relaxed" style="color: var(--color-muted-foreground);">
+                        Have a project, a role, or just want to say hi? Send a note and I'll get back to you — or email me directly at
+                        <a href="mailto:hello@ruthwickk.dev" class="font-medium underline decoration-amber-500/40 hover:decoration-amber-500 text-slate-200">hello@ruthwickk.dev</a>.
+                    </p>
+                </div>
 
-        <!-- Dynamic Stat Counters -->
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 w-full max-w-3xl pt-8 border-t border-gray-800/80">
-            <div class="flex flex-col items-center">
-                <span class="text-2xl sm:text-3xl font-extrabold font-mono text-blue-400">99.9%</span>
-                <span class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-mono">System Reliability</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl sm:text-3xl font-extrabold font-mono text-purple-400">&lt;20ms</span>
-                <span class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-mono">Inference Latency</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl sm:text-3xl font-extrabold font-mono text-pink-400">RAG</span>
-                <span class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-mono">Vector Architecture</span>
-            </div>
-            <div class="flex flex-col items-center">
-                <span class="text-2xl sm:text-3xl font-extrabold font-mono text-emerald-400">2026</span>
-                <span class="text-xs text-gray-500 mt-1 uppercase tracking-wider font-mono">Launch Horizon</span>
-            </div>
-        </div>
+                <form id="contact-form" class="mt-8 grid sm:grid-cols-2 gap-5" novalidate
+                      action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
 
+                    <div class="sm:col-span-1">
+                        <label for="name" class="block text-sm font-medium text-slate-200 mb-1.5">
+                            Name <span class="text-amber-500" aria-hidden="true">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" required autocomplete="name"
+                               class="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg text-sm"
+                               aria-describedby="name-error" placeholder="Jane Doe">
+                        <p id="name-error" class="mt-1.5 text-xs text-red-400 hidden" role="alert"></p>
+                    </div>
+
+                    <div class="sm:col-span-1">
+                        <label for="email" class="block text-sm font-medium text-slate-200 mb-1.5">
+                            Email <span class="text-amber-500" aria-hidden="true">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" required autocomplete="email"
+                               class="w-full min-h-[44px] px-3.5 py-2.5 rounded-lg text-sm"
+                               aria-describedby="email-error" placeholder="jane@example.com">
+                        <p id="email-error" class="mt-1.5 text-xs text-red-400 hidden" role="alert"></p>
+                    </div>
+
+                    <div class="sm:col-span-2">
+                        <label for="message" class="block text-sm font-medium text-slate-200 mb-1.5">
+                            Message <span class="text-amber-500" aria-hidden="true">*</span>
+                        </label>
+                        <textarea id="message" name="message" rows="4" required
+                                  class="w-full px-3.5 py-2.5 rounded-lg text-sm resize-y"
+                                  aria-describedby="message-error" placeholder="What's on your mind?"></textarea>
+                        <p id="message-error" class="mt-1.5 text-xs text-red-400 hidden" role="alert"></p>
+                    </div>
+
+                    <div class="sm:col-span-2 flex items-center gap-4 pt-1">
+                        <button type="submit" id="submit-btn"
+                                class="btn-primary inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold min-w-[140px]">
+                            <span id="submit-label">Send message</span>
+                            <i data-lucide="send" class="w-4 h-4" id="submit-icon" aria-hidden="true"></i>
+                        </button>
+                        <p id="form-status" class="text-sm" role="status" aria-live="polite"></p>
+                    </div>
+                </form>
+            </div>
+        </section>
     </main>
 
     <!-- Footer -->
-    <footer class="relative z-10 w-full max-w-6xl flex flex-col sm:flex-row justify-between items-center py-4 border-t border-gray-800/60 text-xs text-gray-500 font-mono gap-4">
-        <div>
-            &copy; 2026 Ruthwick Masidkar. All rights reserved.
-        </div>
-        <div class="flex items-center gap-6">
-            <span>Built with Tailwind & Neural Canvas</span>
-            <span class="text-purple-400">ruthwickk.dev</span>
+    <footer class="border-t" style="border-color: var(--color-border);">
+        <div class="max-w-5xl mx-auto px-5 sm:px-6 py-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm" style="color: var(--color-muted-foreground);">
+            <p>&copy; 2026 Ruthwick Masidkar.</p>
+            <div class="flex items-center gap-5">
+                <a href="https://github.com/Ruthwick15" target="_blank" rel="noopener" class="hover:text-white" aria-label="GitHub profile">
+                    <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.089-.744.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.469-2.38 1.236-3.22-.124-.303-.535-1.523.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.807 5.625-5.479 5.921.43.372.823 1.102.823 2.222 0 1.606-.014 2.898-.014 3.293 0 .322.216.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+                </a>
+                <a href="https://linkedin.com/in/ruthwick-masidkar" target="_blank" rel="noopener" class="hover:text-white" aria-label="LinkedIn profile">
+                    <svg viewBox="0 0 24 24" class="w-[18px] h-[18px]" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="mailto:hello@ruthwickk.dev" class="hover:text-white" aria-label="Email hello@ruthwickk.dev">
+                    <i data-lucide="mail" class="w-[18px] h-[18px]" aria-hidden="true"></i>
+                </a>
+            </div>
         </div>
     </footer>
 
-    <!-- Interactive Scripts -->
     <script>
-        // 1. Initialize Lucide Icons
         lucide.createIcons();
 
-        // 2. Terminal Auto-Typing Effect (Personalized Intro & Launch Messages)
-        const typingSentences = [
-            "Hi there! Welcome to ruthwickk.dev...",
-            "I'm Ruthwick, an AI & Software Engineer.",
-            "Thanks for checking out my space!",
-            "I will be active here very soon...",
-            "Preparing AI project demos & deep-dives.",
-            "Stay tuned — full platform launching soon!"
-        ];
-        
-        let sentenceIndex = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        const typedTextElement = document.getElementById('typed-text');
+        const form = document.getElementById('contact-form');
+        const submitBtn = document.getElementById('submit-btn');
+        const submitLabel = document.getElementById('submit-label');
+        const submitIcon = document.getElementById('submit-icon');
+        const status = document.getElementById('form-status');
 
-        function typeEffect() {
-            const currentSentence = typingSentences[sentenceIndex];
-            
-            if (isDeleting) {
-                typedTextElement.textContent = currentSentence.substring(0, charIndex - 1);
-                charIndex--;
+        const fields = {
+            name: { el: document.getElementById('name'), error: document.getElementById('name-error'), message: 'Please enter your name.' },
+            email: { el: document.getElementById('email'), error: document.getElementById('email-error'), message: 'Please enter a valid email address.' },
+            message: { el: document.getElementById('message'), error: document.getElementById('message-error'), message: 'Please enter a short message.' },
+        };
+
+        function isValidEmail(value) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+        }
+
+        function validateField(key) {
+            const { el, error, message } = fields[key];
+            const value = el.value.trim();
+            let valid = value.length > 0;
+            if (key === 'email' && valid) valid = isValidEmail(value);
+
+            if (valid) {
+                el.removeAttribute('aria-invalid');
+                error.classList.add('hidden');
+                error.textContent = '';
             } else {
-                typedTextElement.textContent = currentSentence.substring(0, charIndex + 1);
-                charIndex++;
+                el.setAttribute('aria-invalid', 'true');
+                error.textContent = message;
+                error.classList.remove('hidden');
             }
-
-            let typeSpeed = isDeleting ? 30 : 60;
-
-            if (!isDeleting && charIndex === currentSentence.length) {
-                typeSpeed = 2000;
-                isDeleting = true;
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                sentenceIndex = (sentenceIndex + 1) % typingSentences.length;
-                typeSpeed = 500;
-            }
-
-            setTimeout(typeEffect, typeSpeed);
+            return valid;
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            setTimeout(typeEffect, 500);
+        Object.keys(fields).forEach((key) => {
+            fields[key].el.addEventListener('blur', () => validateField(key));
         });
 
-        // 3. Form Submission Handling
-        const form = document.getElementById('subscribe-form');
-        const feedback = document.getElementById('form-feedback');
-        const emailInput = document.getElementById('email-input');
+        function setLoading(isLoading) {
+            submitBtn.disabled = isLoading;
+            submitLabel.textContent = isLoading ? 'Sending...' : 'Send message';
+            if (isLoading) {
+                submitIcon.outerHTML = '<span class="spinner" id="submit-icon"></span>';
+            } else {
+                document.getElementById('submit-icon').outerHTML = '<i data-lucide="send" class="w-4 h-4" id="submit-icon" aria-hidden="true"></i>';
+                lucide.createIcons();
+            }
+        }
 
-        form.addEventListener('submit', (e) => {
+        form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (emailInput.value) {
-                feedback.classList.remove('hidden');
-                emailInput.value = '';
-                setTimeout(() => {
-                    feedback.classList.add('hidden');
-                }, 5000);
+
+            const results = Object.keys(fields).map(validateField);
+            const firstInvalidKey = Object.keys(fields).find((key) => !validateField(key));
+
+            if (results.includes(false)) {
+                if (firstInvalidKey) fields[firstInvalidKey].el.focus();
+                status.textContent = '';
+                return;
+            }
+
+            setLoading(true);
+            status.textContent = '';
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form),
+                });
+
+                if (response.ok) {
+                    form.reset();
+                    Object.keys(fields).forEach((key) => {
+                        fields[key].el.removeAttribute('aria-invalid');
+                        fields[key].error.classList.add('hidden');
+                    });
+                    status.textContent = "Thanks — your message is on its way. I'll reply soon.";
+                    status.classList.remove('text-red-400');
+                    status.classList.add('text-emerald-400');
+                } else {
+                    throw new Error('Request failed');
+                }
+            } catch (err) {
+                status.textContent = 'Something went wrong — please try again, or email hello@ruthwickk.dev directly.';
+                status.classList.remove('text-emerald-400');
+                status.classList.add('text-red-400');
+            } finally {
+                setLoading(false);
             }
         });
-
-        // 4. Interactive Canvas Background (Particle Constellation / Neural Net)
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const particles = [];
-        const particleCount = Math.min(Math.floor(window.innerWidth / 15), 70);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.vx = (Math.random() - 0.5) * 0.6;
-                this.vy = (Math.random() - 0.5) * 0.6;
-                this.radius = Math.random() * 1.5 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
-            }
-
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(168, 85, 247, 0.6)';
-                ctx.fill();
-            }
-        }
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const distance = Math.sqrt(dx * dx + dy * dy);
-
-                    if (distance < 120) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(96, 165, 250, ${1 - distance / 120 * 0.8})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animateCanvas);
-        }
-
-        animateCanvas();
     </script>
 </body>
 </html>
